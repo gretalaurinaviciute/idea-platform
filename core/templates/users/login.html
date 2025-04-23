@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
+    <div class="card p-4 shadow" style="width: 350px;">
+        <h3 class="text-center">{% trans "login" %}</h3>
+
+        {% if form.errors %}
+            <div class="alert alert-danger text-center">
+                {% trans "incorrect username or password. please try again." %}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">{% trans "username" %}</label>
+                <input type="text" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">{% trans "password" %}</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">{% trans "login" %}</button>
+        </form>
+        <p class="mt-3 text-center">{% trans "don't have an account?" %} <a href="{% url 'register' %}">{% trans "sign up" %}</a></p>
+    </div>
+</div>
+{% endblock %}

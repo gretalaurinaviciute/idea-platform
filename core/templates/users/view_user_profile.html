@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load user_extras %}
+{% load i18n %}
+{% block content %}
+<style>
+    .rating-stars {
+        direction: rtl;
+        display: inline-flex;
+        gap: 0.3rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .rating-stars input[type="radio"] {
+        display: none;
+    }
+    .rating-stars label {
+        color: #ccc;
+        transition: color 0.2s ease;
+    }
+    .rating-stars input[type="radio"]:checked ~ label,
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+        color: gold;
+    }
+</style>
+
+<div class="container">
+    <div class="card p-4 shadow-sm mt-4 position-relative" style="max-width: 800px; margin: auto;">
+        <h2 class="mb-3">{{ profile_user.username }}</h2>
+
+        <p><strong>
+            {% if profile_user.type == "SPECIALIST" %}
+                {% trans "category of expertise" %}:
+            {% else %}
+                {% trans "idea category" %}:
+            {% endif %}
+        </strong>
+            {% if profile_user.category %}
+                {{ profile_user.category.name }}
+            {% else %}
+                <span class="text-muted">{% trans "not specified" %}</span>
+            {% endif %}
+        </p>
+
+        {% if request.user != profile_user %}
+            <div class="mt-2">
+                <a href="{% url 'conversations' profile_user.id %}" class="btn btn-warning btn-sm position-absolute" style="top: 1rem; right: 1.5rem; z-index: 10;">
+                    💬 {% trans "message" %}
+                </a>
+            </div>
+        {% endif %}
+
+        {% if profile_user.skills and profile_user.type == "SPECIALIST" %}
+            <p><strong>{% trans "skills" %}:</strong> {{ profile_user.skills }}</p>
+        {% endif %}
+
+        {% if profile_user.experience is not None and profile_user.type == "SPECIALIST" %}
+            <p><strong>{% trans "experience" %}:</strong> {{ profile_user.experience|experience_label }}</p>
+        {% endif %}
+
+        {% if profile_user.description %}
+            <p><strong>{% trans "description" %}:</strong> {{ profile_user.description }}</p>
+        {% endif %}
+
+        {% if avg_rating %}
+            <p><strong>{% trans "average rating" %}:</strong>
+                <span class="text-warning">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= avg_rating %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </p>
+        {% endif %}
+
+        {% if is_proposer %}
+            {% if has_ideas %}
+                <hr>
+                <h5 class="mt-3">{% trans "posted ideas" %}:</h5>
+                <ul class="list-group mb-4">
+                    {% for idea in ideas %}
+                        <li class="list-group-item">
+                            <strong>{{ idea.title }}</strong>
+                            {% if idea.category %} ({{ idea.category.name }}) {% endif %}
+                            <br>
+                            {{ idea.description|truncatewords:20 }}
+                            <a href="{% url 'view_idea' idea.id %}" class="btn btn-primary btn-sm float-end">{% trans "view" %}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">{% trans "no ideas posted yet." %}</p>
+            {% endif %}
+        {% endif %}
+
+        {% if profile_user.type == "SPECIALIST" %}
+            {% if profile_user.portfolios.exists %}
+                <hr>
+                <h5 class="mt-3">{% trans "portfolio gallery" %}:</h5>
+                <div class="row">
+                    {% for item in profile_user.portfolios.all %}
+                        <div class="col-md-3 mb-3">
+                            <img src="{{ item.image.url }}" class="img-fluid rounded shadow-sm" alt="{% trans 'portfolio image' %}">
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">{% trans "no portfolio uploaded." %}</p>
+            {% endif %}
+        {% endif %}
+
+        {% if request.user != profile_user %}
+            <hr>
+            <h4>{% trans "leave a review" %}:</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">{% trans "rating" %}:</label>
+                    <div class="rating-stars">
+                        {% for i in "54321"|make_list %}
+                            <input type="radio" name="rating" id="star{{ i }}" value="{{ i }}" {% if form.rating.value|stringformat:"s" == i %}checked{% endif %}>
+                            <label for="star{{ i }}">★</label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{% trans "comment (optional)" %}:</label>
+                    <textarea name="comment" class="form-control" rows="3" placeholder="{% trans 'share your thoughts...' %}">{{ form.comment.value|default_if_none:'' }}</textarea>
+                </div>
+
+                <button type="submit" name="submit_review" class="btn btn-success">{% trans "submit review" %}</button>
+            </form>
+        {% endif %}
+
+        {% if reviews %}
+            <hr>
+            <h4>{% trans "reviews" %}</h4>
+            {% for review in reviews %}
+                <div class="mb-3">
+                    <strong>{{ review.reviewer.username }}</strong>
+                    <span class="text-warning">
+                        {% for i in "12345"|make_list %}
+                            {% if forloop.counter <= review.rating %}
+                                ★
+                            {% else %}
+                                ☆
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <small class="text-muted">{{ review.created_at|date:"Y M d" }}</small>
+                    {% if review.comment %}
+                        <p>{{ review.comment }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">{% trans "no reviews yet." %}</p>
+        {% endif %}
+
+        <a href="{% url 'search' %}" class="btn btn-success mt-4">← {% trans "back to search" %}</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container py-4">
+    <h2>{% trans "Platform terms of use & community guidelines" %}</h2>
+
+    <p>{% trans "Welcome to idea ⇄ platform! By registering and using this platform, you agree to abide by the following:" %}</p>
+
+    <h4>{% trans "Main guidelines (for all users)" %}</h4>
+    <ul>
+        <li>{% trans "Respect all members of the platform" %}</li>
+        <li>{% trans "Do not steal, copy, or misuse any idea you see" %}</li>
+        <li>{% trans "Use clear and constructive communication" %}</li>
+        <li>{% trans "Do not post harmful, offensive, or misleading content" %}</li>
+    </ul>
+
+    <h4>{% trans "For idea proposers" %}</h4>
+    <ul>
+        <li>{% trans "Be clear and detailed about your ideas" %}</li>
+        <li>{% trans "Understand that feedback is voluntary and collaborative" %}</li>
+        <li>{% trans "Be open to suggestions and improvements" %}</li>
+    </ul>
+
+    <h4>{% trans "For specialists" %}</h4>
+    <ul>
+        <li>{% trans "Respect intellectual property — do not reuse ideas without permission" %}</li>
+        <li>{% trans "Provide thoughtful and honest input where possible" %}</li>
+        <li>{% trans "Only accept work or collaboration if you're confident in your ability to contribute" %}</li>
+    </ul>
+
+    <p class="mt-4 text-muted">
+        {% trans "By creating an account and using the platform, you agree to all of the above." %}
+    </p>
+</div>
+{% endblock %}

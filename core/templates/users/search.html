@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container mt-4">
+
+    <form method="get" class="row gy-2 gx-3 align-items-center">
+        <div class="col-md-4">
+            <input type="text" name="q" class="form-control" placeholder="{% trans 'search...' %}" value="{{ query }}">
+        </div>
+
+        <div class="col-md-3">
+            <select name="category" class="form-select">
+                <option value="">{% trans "all categories" %}</option>
+                {% for cat in categories %}
+                    <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% if user_type == 'PROPOSER' %}
+        <div class="col-md-3">
+            <input type="text" name="skill" class="form-control" placeholder="{% trans 'skill (e.g. Python)' %}" value="{{ selected_skill }}">
+        </div>
+        {% endif %}
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">{% trans "search" %}</button>
+        </div>
+    </form>
+
+    <hr>
+
+    {% if user_type == 'SPECIALIST' %}
+        <h4 class="mt-4">{% trans "ideas" %}</h4>
+        {% if ideas %}
+            <ul class="list-group mb-4">
+                {% for idea in ideas %}
+                    <li class="list-group-item">
+                        <a href="{% url 'view_idea' idea.id %}" class="btn btn-primary btn-sm float-end">{% trans "view" %}</a>
+                        <strong>{{ idea.title }}</strong> ({{ idea.category.name }})<br>
+                        {{ idea.description|truncatewords:20 }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans "no ideas found." %}</p>
+        {% endif %}
+    {% endif %}
+
+    <h4>
+        {% if user_type == 'PROPOSER' %}
+            {% trans "specialists" %}
+        {% else %}
+            {% trans "idea proposers" %}
+        {% endif %}
+    </h4>
+    {% if specialists %}
+        <ul class="list-group">
+            {% for user in specialists %}
+                <li class="list-group-item">
+                    <a href="{% url 'view_user_profile' user.id %}" class="btn btn-primary btn-sm float-end">{% trans "view" %}</a>
+                    <strong>{{ user.username }}</strong>
+                    {% if user.category %}
+                        - {{ user.category.name }}
+                    {% endif %}
+                    <br>
+                    {% if user.skills %}
+                        <strong>{% trans "skills" %}:</strong> {{ user.skills }}<br>
+                    {% endif %}
+
+                    {% if user.description %}
+                        <small>{{ user.description|truncatewords:20 }}</small>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>
+            {% if user_type == 'PROPOSER' %}
+                {% trans "no specialists found." %}
+            {% else %}
+                {% trans "no idea proposers found." %}
+            {% endif %}
+        </p>
+    {% endif %}
+</div>
+{% endblock %}

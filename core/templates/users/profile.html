@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">{% trans "my profile" %}</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">{% trans "username" %}</label>
+                <input type="text" class="form-control" name="username" value="{{ form.username.value|default:'' }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "description" %}</label>
+                <textarea class="form-control" name="description" rows="5" placeholder="{% trans 'about me' %}">{{ form.description.value|default:'' }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "category of interest" %}</label>
+                <select class="form-control" name="category" id="category-select">
+                    <option value="">----------</option>
+                    {% for choice in form.category.field.queryset %}
+                        <option value="{{ choice.id }}" {% if form.category.value == choice.id %}selected{% endif %}>
+                            {{ choice.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            {% if request.user.type == 'SPECIALIST' %}
+                <div class="mb-3">
+                    <label class="form-label">{% trans "skills" %}</label>
+                    <textarea class="form-control" name="skills" rows="3" placeholder="{% trans 'e.g., Python, UI/UX, Marketing' %}">{{ form.skills.value|default:'' }}</textarea>
+                    <div class="form-text">{% trans "separate skills with commas (e.g., Python, Django, SQL)" %}</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "years of experience" %}</label>
+                    {{ form.experience }}
+                </div>
+            {% endif %}
+
+            <button type="submit" name="update_profile" class="btn btn-success w-100">{% trans "save changes" %}</button>
+        </form>
+
+        <hr class="my-4">
+
+        <h3 class="mt-4">{% trans "change password" %}</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ password_form.as_p }}
+            <button type="submit" name="update_password" class="btn btn-danger w-100">{% trans "change password" %}</button>
+        </form>
+
+        {% if request.user.type == 'SPECIALIST' %}
+            <hr>
+            <h3 class="mt-4">{% trans "portfolio" %}</h3>
+
+            <div class="row">
+                {% for item in portfolios %}
+                    <div class="col-6 col-md-4 col-lg-3 mb-3">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" class="img-fluid rounded shadow-sm" alt="{% trans 'Portfolio image' %}">
+                        {% else %}
+                            <p class="text-muted">{% trans "no images uploaded" %}</p>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p class="text-muted">{% trans "no portfolio items yet." %}</p>
+                {% endfor %}
+            </div>
+
+            <form method="POST" enctype="multipart/form-data" class="mb-4">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">{% trans "upload image (supported image extensions: jpg, jpeg, png)" %}</label>
+                    {{ portfolio_form.image }}
+                </div>
+                <button type="submit" name="add_portfolio" class="btn btn-success w-100">{% trans "upload" %}</button>
+            </form>
+        {% endif %}
+
+        <hr class="my-4">
+        <h3 class="mt-4">{% trans "my reviews" %}</h3>
+
+        {% if avg_rating %}
+            <p>
+                <strong>{% trans "average rating:" %}</strong>
+                <span class="text-warning">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= avg_rating %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                    {% endfor %}
+                </span>
+                ({{ avg_rating }}/5)
+            </p>
+        {% else %}
+            <p class="text-muted">{% trans "no ratings yet." %}</p>
+        {% endif %}
+
+        {% if reviews %}
+            {% for review in reviews %}
+                <div class="border rounded p-3 mb-3">
+                    <strong>{{ review.reviewer.username }}</strong>
+                    <span class="text-warning">
+                        {% for i in "12345"|make_list %}
+                            {% if forloop.counter <= review.rating %}
+                                ★
+                            {% else %}
+                                ☆
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <small class="text-muted d-block">{{ review.created_at|date:"Y M d" }}</small>
+                    {% if review.comment %}
+                        <p class="mt-2 mb-0">{{ review.comment }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

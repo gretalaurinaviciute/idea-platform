@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 50vh; margin-top: 20px;">
+    <div class="card p-4 shadow" style="width: 400px;">
+        <h3 class="text-center">{% trans "register" %}</h3>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" id="register-form">
+            {% csrf_token %}
+
+            <div class="mb-3 text-center">
+                <label class="form-label">{% trans "i am a:" %}</label>
+                <div>
+                    <input type="radio" name="user_type" value="SPECIALIST" id="specialist"
+                        {% if form.user_type.value == "SPECIALIST" %}checked{% endif %} required>
+                    <label for="specialist">{% trans "skilled specialist" %}</label>
+
+                    <input type="radio" name="user_type" value="PROPOSER" id="proposer"
+                        {% if form.user_type.value == "PROPOSER" %}checked{% endif %}>
+                    <label for="proposer">{% trans "idea proposer" %}</label>
+                </div>
+            </div>
+
+            <div id="common-fields" {% if form.user_type.value %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "username" %}</label>
+                    <input type="text" class="form-control" name="username" value="{{ form.username.value|default:'' }}" required>
+                    {% for error in form.username.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        {% trans "password" %}
+                        <span class="info-icon" data-bs-toggle="tooltip" title="{% trans 'password must contain:\n- at least 8 characters\n- not too similar to your personal info\n- not a commonly used password\n- not entirely numeric' %}">ℹ️</span>
+                    </label>
+                    <input type="password" class="form-control" name="password1" required>
+                    {% for error in form.password1.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "confirm password" %}</label>
+                    <input type="password" class="form-control" name="password2" required>
+                    {% for error in form.password2.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "category" %}</label>
+                    <select class="form-control" name="category" required>
+                        {% for choice in form.category.field.choices %}
+                            <option value="{{ choice.0 }}" {% if form.category.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div id="specialist-fields" {% if form.user_type.value == "SPECIALIST" %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "skills" %}</label>
+                    <input type="text" class="form-control" name="skills_1" placeholder="{% trans 'skill 1' %}" value="{{ form.skills_1.value|default:'' }}">
+                    <input type="text" class="form-control" name="skills_2" placeholder="{% trans 'skill 2' %}" value="{{ form.skills_2.value|default:'' }}">
+                    <input type="text" class="form-control" name="skills_3" placeholder="{% trans 'skill 3' %}" value="{{ form.skills_3.value|default:'' }}">
+                    {% if form.skills_1.errors or form.skills_2.errors or form.skills_3.errors %}
+                        <div class="text-danger">{% trans "at least one skill is required" %}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "experience" %}</label>
+                    <select class="form-control" name="experience">
+                        {% for choice in form.experience.field.choices %}
+                            <option value="{{ choice.0 }}" {% if form.experience.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div id="proposer-fields" {% if form.user_type.value == "PROPOSER" %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="agree_to_terms" id="agree_to_terms" required>
+                <label class="form-check-label" for="agree_to_terms">
+                    <small>
+                        {% trans "I agree to the" %} <a href="{% url 'terms' %}" target="_blank">{% trans "platform terms of use & community guidelines" %}</a>.
+                    </small>
+                </label>
+                {% for error in form.agree_to_terms.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">{% trans "register" %}</button>
+        </form>
+
+        <p class="mt-3 text-center">{% trans "already have an account?" %} <a href="{% url 'login' %}">{% trans "login" %}</a></p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const userTypeRadios = document.querySelectorAll('input[name="user_type"]');
+        const commonFields = document.getElementById("common-fields");
+        const specialistFields = document.getElementById("specialist-fields");
+        const proposerFields = document.getElementById("proposer-fields");
+
+        function toggleFields() {
+            const selectedType = document.querySelector('input[name="user_type"]:checked');
+            if (selectedType) {
+                commonFields.style.display = "block";
+                if (selectedType.value === "SPECIALIST") {
+                    specialistFields.style.display = "block";
+                    proposerFields.style.display = "none";
+                } else if (selectedType.value === "PROPOSER") {
+                    proposerFields.style.display = "block";
+                    specialistFields.style.display = "none";
+                }
+            }
+        }
+
+        userTypeRadios.forEach(radio => {
+            radio.addEventListener("change", toggleFields);
+        });
+
+        toggleFields();
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
+{% endblock %}

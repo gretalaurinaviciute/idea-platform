@@ -1,0 +1,758 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-14 19:59+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+#: .\forms.py:10 .\models.py:31 .\templates\users\register.html:26
+msgid "skilled specialist"
+msgstr "įgudęs specialistas"
+
+#: .\forms.py:11 .\models.py:32 .\templates\users\register.html:30
+msgid "idea proposer"
+msgstr "idėjų siūlytojas"
+
+#: .\forms.py:17
+msgid "i am a"
+msgstr "aš esu"
+
+#: .\forms.py:21 .\templates\users\register.html:74
+msgid "skill 1"
+msgstr "įgūdis 1"
+
+#: .\forms.py:22 .\templates\users\register.html:75
+msgid "skill 2"
+msgstr "įgūdis 2"
+
+#: .\forms.py:23 .\templates\users\register.html:76
+msgid "skill 3"
+msgstr "įgūdis 3"
+
+#: .\forms.py:29 .\forms.py:112 .\models.py:36 .\models.py:54
+#: .\templates\users\my_ideas.html:16 .\templates\users\post_idea.html:23
+#: .\templates\users\register.html:61 .\templates\users\view_idea.html:21
+msgid "category"
+msgstr "kategorija"
+
+#: .\forms.py:33 .\forms.py:116 .\templatetags\user_extras.py:7
+msgid "less than 1 year"
+msgstr "mažiau nei 1 metai"
+
+#: .\forms.py:34 .\forms.py:117
+msgid "1-3 years"
+msgstr "1-3 metai"
+
+#: .\forms.py:35 .\forms.py:118
+msgid "3-5 years"
+msgstr "3-5 metai"
+
+#: .\forms.py:36 .\forms.py:119 .\templatetags\user_extras.py:10
+msgid "more than 5 years"
+msgstr "daugiau nei 5 metai"
+
+#: .\forms.py:43 .\forms.py:126 .\templates\users\profile.html:40
+msgid "years of experience"
+msgstr "patirtis"
+
+#: .\forms.py:49
+msgid ""
+"I agree to the <a href=\"/terms/\" target=\"_blank\">Platform Terms of Use & "
+"Community Guidelines</a>."
+msgstr "Sutinku su <a href=\"/terms/\" target=\"_blank\">platformos naudojimo sąlygomis ir  "
+"bendruomenės gairėmis</a>."
+
+#: .\forms.py:51
+msgid "You must agree to the platform rules to register."
+msgstr "Turite sutikti su platformos taisyklėmis, kad užsiregistruotumėte."
+
+#: .\forms.py:70
+msgid "At least one skill is required"
+msgstr "Būtina įvesti bent vieną įgūdį"
+
+#: .\forms.py:79
+msgid "Select a category"
+msgstr "Pasirinkite kategoriją"
+
+#: .\forms.py:85
+msgid "Suggest a new category"
+msgstr "Pasiūlykite naują kategoriją"
+
+#: .\forms.py:98
+msgid "You must select a category or suggest a new one."
+msgstr "Būtina pasirinkti kategoriją arba pasiūlyti naują."
+
+#: .\forms.py:140
+msgid "old password"
+msgstr "senas slaptažodis"
+
+#: .\forms.py:144
+msgid "new password"
+msgstr "naujas slaptažodis"
+
+#: .\forms.py:145
+msgid ""
+"your password must be at least 8 characters, cannot be commonly used, and "
+"cannot be fully numeric."
+msgstr "slaptažodį turi sudaryti bent 8 simboliai, negali būti dažnai naudojamas ir visiškai skaitinis."
+
+#: .\forms.py:149
+msgid "new password confirmation"
+msgstr "naujo slaptažodžio patvirtinimas"
+
+#: .\forms.py:150
+msgid "enter the same password as before for verification."
+msgstr "patvirtinimui įveskite tą patį slaptažodį, kaip ir anksčiau."
+
+#: .\forms.py:169
+msgid "leave an optional comment..."
+msgstr "palikite komentarą..."
+
+#: .\models.py:10
+msgid "Approved"
+msgstr "Patvirtinta"
+
+#: .\models.py:11
+msgid "Pending"
+msgstr "Laukiama patvirtinimo"
+
+#: .\models.py:30
+msgid "administrator"
+msgstr "administratorius"
+
+#: .\models.py:34
+msgid "user type"
+msgstr "vartotojo tipas"
+
+#: .\models.py:35 .\models.py:55 .\templates\users\my_ideas.html:17
+#: .\templates\users\post_idea.html:54 .\templates\users\profile.html:17
+#: .\templates\users\view_idea.html:32
+#: .\templates\users\view_user_profile.html:62
+msgid "description"
+msgstr "aprašymas"
+
+#: .\models.py:37 .\templates\users\profile.html:35
+#: .\templates\users\register.html:73 .\templates\users\search.html:67
+#: .\templates\users\view_user_profile.html:54
+msgid "skills"
+msgstr "įgūdžiai"
+
+#: .\models.py:38 .\templates\users\register.html:82
+#: .\templates\users\view_user_profile.html:58
+msgid "experience"
+msgstr "patirtis"
+
+#: .\models.py:39
+msgid "agreed to terms at"
+msgstr "sutiko su sąlygomis"
+
+#: .\models.py:53 .\templates\users\my_ideas.html:15
+#: .\templates\users\post_idea.html:18
+msgid "title"
+msgstr "pavadinimas"
+
+#: .\models.py:56 .\models.py:98
+msgid "created at"
+msgstr "sukurta"
+
+#: .\models.py:64
+msgid "file"
+msgstr "failai"
+
+#: .\models.py:72
+msgid "image"
+msgstr "vaizdas"
+
+#: .\models.py:73
+msgid "uploaded at"
+msgstr "įkelta"
+
+#: .\models.py:86
+msgid "saved idea"
+msgstr "išsaugota idėja"
+
+#: .\models.py:87 .\templates\base.html:130
+#: .\templates\users\saved_ideas.html:6
+msgid "saved ideas"
+msgstr "išsaugotos idėjos"
+
+#: .\models.py:97
+msgid "comment"
+msgstr "komentaras"
+
+#: .\models.py:102
+msgid "review"
+msgstr "atsiliepimas"
+
+#: .\models.py:103 .\templates\users\view_user_profile.html:141
+msgid "reviews"
+msgstr "atsiliepimai"
+
+#: .\models.py:110
+msgid "sender"
+msgstr "siuntėjas"
+
+#: .\models.py:111
+msgid "receiver"
+msgstr "gavėjas"
+
+#: .\models.py:112
+msgid "message body"
+msgstr "žinutės tekstas"
+
+#: .\models.py:113
+msgid "timestamp"
+msgstr "laiko žyma"
+
+#: .\models.py:114
+msgid "is read"
+msgstr "perskaityta"
+
+#: .\models.py:118 .\templates\users\view_user_profile.html:48
+msgid "message"
+msgstr "žinutė"
+
+#: .\models.py:119
+msgid "messages"
+msgstr "žinutės"
+
+#: .\templates\base.html:7
+msgid "idea platform"
+msgstr "idea platform"
+
+#: .\templates\base.html:108
+msgid "welcome"
+msgstr "labas"
+
+#: .\templates\base.html:111
+msgid "logout"
+msgstr "atsijungti"
+
+#: .\templates\base.html:114 .\templates\users\login.html:6
+#: .\templates\users\login.html:25 .\templates\users\register.html:111
+msgid "login"
+msgstr "prisijungti"
+
+#: .\templates\base.html:115 .\templates\users\register.html:6
+#: .\templates\users\register.html:108
+msgid "register"
+msgstr "užsiregistruoti"
+
+#: .\templates\base.html:124
+msgid "menu"
+msgstr "meniu"
+
+#: .\templates\base.html:125 .\templates\users\profile.html:6
+msgid "my profile"
+msgstr "mano profilis"
+
+#: .\templates\base.html:126 .\templates\users\search.html:26
+msgid "search"
+msgstr "paieška"
+
+#: .\templates\base.html:128 .\templates\users\my_ideas.html:7
+msgid "my ideas"
+msgstr "mano idėjos"
+
+#: .\templates\base.html:132
+msgid "inbox"
+msgstr "pašto dėžutė"
+
+#: .\templates\index.html:4
+msgid "welcome to the idea platform!"
+msgstr "welcome to the idea platform!"
+
+#: .\templates\users\conversations.html:78
+msgid "chat with"
+msgstr "pokalbis su"
+
+#: .\templates\users\conversations.html:100
+msgid "write a message..."
+msgstr "rašykite žinutę..."
+
+#: .\templates\users\conversations.html:103
+msgid "send"
+msgstr "siųsti"
+
+#: .\templates\users\inbox.html:5
+msgid "conversations"
+msgstr "pokalbiai"
+
+#: .\templates\users\inbox.html:36
+msgid "no messages yet"
+msgstr "nėra jokių pokalbių"
+
+#: .\templates\users\login.html:11
+msgid "incorrect username or password. please try again."
+msgstr "neteisingas vartotojo vardas ar slaptažodis. bandykite iš naujo."
+
+#: .\templates\users\login.html:18 .\templates\users\profile.html:12
+#: .\templates\users\register.html:37
+msgid "username"
+msgstr "vartotojo vardas"
+
+#: .\templates\users\login.html:22 .\templates\users\register.html:45
+msgid "password"
+msgstr "slaptažodis"
+
+#: .\templates\users\login.html:27
+msgid "don't have an account?"
+msgstr "neturite paskyros?"
+
+#: .\templates\users\login.html:27
+msgid "sign up"
+msgstr "užsiregistruokite"
+
+#: .\templates\users\my_ideas.html:8 .\templates\users\post_idea.html:10
+msgid "post a new idea"
+msgstr "skelbti idėją"
+
+#: .\templates\users\my_ideas.html:14
+msgid "no"
+msgstr "ne"
+
+#: .\templates\users\my_ideas.html:18
+msgid "files"
+msgstr "failai"
+
+#: .\templates\users\my_ideas.html:19
+msgid "posted on"
+msgstr "paskelbta"
+
+#: .\templates\users\my_ideas.html:20
+msgid "actions"
+msgstr "veiksmai"
+
+#: .\templates\users\my_ideas.html:32
+msgid "(Pending Approval)"
+msgstr "(laukiam patvirtinimo)"
+
+#: .\templates\users\my_ideas.html:41
+msgid "download"
+msgstr "atsisiųsti"
+
+#: .\templates\users\my_ideas.html:43
+msgid "no files"
+msgstr "nėra failų"
+
+#: .\templates\users\my_ideas.html:48
+msgid "edit"
+msgstr "redaguoti"
+
+#: .\templates\users\my_ideas.html:53
+msgid "Are you sure you want to delete this idea?"
+msgstr "Ar tikrai norite ištrinti šią idėją?"
+
+#: .\templates\users\my_ideas.html:54
+msgid "delete"
+msgstr "ištrinti"
+
+#: .\templates\users\my_ideas.html:61
+msgid "you haven't posted any ideas yet."
+msgstr "neturite jokių paskelbtų idėjų."
+
+#: .\templates\users\post_idea.html:8
+msgid "edit your idea"
+msgstr "redaguoti idėją"
+
+#: .\templates\users\post_idea.html:35
+msgid "can't find a suitable category?"
+msgstr "nerandate tinkamos kategorijos?"
+
+#: .\templates\users\post_idea.html:36
+msgid "suggest a new category"
+msgstr "pasiūlykite naują kategoriją"
+
+#: .\templates\users\post_idea.html:41
+msgid "existing files"
+msgstr "esami failai"
+
+#: .\templates\users\post_idea.html:46
+msgid "remove"
+msgstr "ištrinti"
+
+#: .\templates\users\post_idea.html:59
+msgid "upload files"
+msgstr "įkelti failus"
+
+#: .\templates\users\post_idea.html:62
+msgid ""
+"allowed file types: .pdf, .docx, .txt, .png, .jpg, .jpeg | max size: 5MB"
+msgstr "priimami failų tipai: .pdf, .docx, .txt, .png, .jpg, .jpeg | max dydis: 5MB"
+
+#: .\templates\users\post_idea.html:68
+msgid "update"
+msgstr "atnaujinti"
+
+#: .\templates\users\post_idea.html:70
+msgid "submit"
+msgstr "pateikti"
+
+#: .\templates\users\profile.html:18
+msgid "about me"
+msgstr "apie mane"
+
+#: .\templates\users\profile.html:22
+msgid "category of interest"
+msgstr "kategorija"
+
+#: .\templates\users\profile.html:36
+msgid "e.g., Python, UI/UX, Marketing"
+msgstr "pvz., Python, UI/UX, marketingas"
+
+#: .\templates\users\profile.html:37
+msgid "separate skills with commas (e.g., Python, Django, SQL)"
+msgstr "atskirkite įgūdžius kableliais (pvz., Python, Django, SQL)"
+
+#: .\templates\users\profile.html:45
+msgid "save changes"
+msgstr "išsaugoti"
+
+#: .\templates\users\profile.html:51 .\templates\users\profile.html:55
+msgid "change password"
+msgstr "keisti slaptažodį"
+
+#: .\templates\users\profile.html:60
+msgid "portfolio"
+msgstr "portfolio"
+
+#: .\templates\users\profile.html:67
+msgid "Portfolio image"
+msgstr "Portfolio vaizdas"
+
+#: .\templates\users\profile.html:69
+msgid "no images uploaded"
+msgstr "nėra jokių vaizdų"
+
+#: .\templates\users\profile.html:73
+msgid "no portfolio items yet."
+msgstr "nėra portfolio"
+
+#: .\templates\users\profile.html:81
+msgid "upload image (supported image extensions: jpg, jpeg, png)"
+msgstr "įkelti vaizdus (priimtini plėtiniai: jpg, jpeg, png)"
+
+#: .\templates\users\profile.html:84
+msgid "upload"
+msgstr "įkelti"
+
+#: .\templates\users\profile.html:89
+msgid "my reviews"
+msgstr "mano atsiliepimai"
+
+#: .\templates\users\profile.html:93
+msgid "average rating:"
+msgstr "vidutinis įvertinimas:"
+
+#: .\templates\users\profile.html:106
+msgid "no ratings yet."
+msgstr "jokių atsiliepimų."
+
+#: .\templates\users\register.html:22
+msgid "i am a:"
+msgstr "aš esu"
+
+#: .\templates\users\register.html:46
+msgid ""
+"password must contain:\\n- at least 8 characters\\n- not too similar to your "
+"personal info\\n- not a commonly used password\\n- not entirely numeric"
+msgstr ""
+"slaptažodyje turi būti:\\n- bent 8 simboliai\\n- neturi būti pernelyg panašus į asmeninę informaciją\\n- neturi būti dažnai naudojamas slaptažodis\\n- negali būti tik skaičiai"
+
+#: .\templates\users\register.html:54
+msgid "confirm password"
+msgstr "patvirtinkite slaptažodį"
+
+#: .\templates\users\register.html:78
+msgid "at least one skill is required"
+msgstr "bent vienas įgūdis yra privalomas"
+
+#: .\templates\users\register.html:100
+msgid "I agree to the"
+msgstr "sutinku su"
+
+#: .\templates\users\register.html:100
+msgid "platform terms of use & community guidelines"
+msgstr "platformos naudojimo taisyklėmis ir bendruomenės gairėmis"
+
+#: .\templates\users\register.html:111
+msgid "already have an account?"
+msgstr "jau turite paskyrą?"
+
+#: .\templates\users\saved_ideas.html:14 .\templates\users\search.html:38
+#: .\templates\users\search.html:60
+#: .\templates\users\view_user_profile.html:90
+msgid "view"
+msgstr "peržiūrėti"
+
+#: .\templates\users\saved_ideas.html:19
+msgid "you haven't saved any ideas yet."
+msgstr "dar nesate išsaugoję idėjų."
+
+#: .\templates\users\search.html:8
+msgid "search..."
+msgstr "ieškoti..."
+
+#: .\templates\users\search.html:13
+msgid "all categories"
+msgstr "visos kategorijos"
+
+#: .\templates\users\search.html:21
+msgid "skill (e.g. Python)"
+msgstr "įgūdis (pvz. Python)"
+
+#: .\templates\users\search.html:33
+msgid "ideas"
+msgstr "idėjos"
+
+#: .\templates\users\search.html:45
+msgid "no ideas found."
+msgstr "idėjų nerasta."
+
+#: .\templates\users\search.html:51
+msgid "specialists"
+msgstr "specialistai"
+
+#: .\templates\users\search.html:53
+msgid "idea proposers"
+msgstr "idėjų siūlytojai"
+
+#: .\templates\users\search.html:79
+msgid "no specialists found."
+msgstr "specialistų nerasta."
+
+#: .\templates\users\search.html:81
+msgid "no idea proposers found."
+msgstr "idėjų siūlytojų nerasta."
+
+#: .\templates\users\terms.html:5
+msgid "Platform terms of use & community guidelines"
+msgstr "Platformos naudojimo taisyklės ir bendruomenės gairės"
+
+#: .\templates\users\terms.html:7
+msgid ""
+"Welcome to idea ⇄ platform! By registering and using this platform, you "
+"agree to abide by the following:"
+msgstr ""
+"Sveiki atvykę į idea ⇄ platform! Registruodamiesi ir naudodamiesi šia platforma, jūs sutinkate laikytis šių taisyklių:"
+
+#: .\templates\users\terms.html:9
+msgid "Main guidelines (for all users)"
+msgstr "Pagrindinės gairės (visiems vartotojams)"
+
+#: .\templates\users\terms.html:11
+msgid "Respect all members of the platform"
+msgstr "Gerbkite visus platformos narius"
+
+#: .\templates\users\terms.html:12
+msgid "Do not steal, copy, or misuse any idea you see"
+msgstr "Nevokite, nekopijuokite ir nepiktnaudžiaukite kitų idėjomis"
+
+#: .\templates\users\terms.html:13
+msgid "Use clear and constructive communication"
+msgstr "Naudokite aiškią ir konstruktyvią komunikaciją"
+
+#: .\templates\users\terms.html:14
+msgid "Do not post harmful, offensive, or misleading content"
+msgstr "Neskleiskite žalingo, įžeidžiančio ar klaidinančio turinio"
+
+#: .\templates\users\terms.html:17
+msgid "For idea proposers"
+msgstr "Idėjų siūlytojams"
+
+#: .\templates\users\terms.html:19
+msgid "Be clear and detailed about your ideas"
+msgstr "Aiškiai ir išsamiai aprašykite savo idėjas"
+
+#: .\templates\users\terms.html:20
+msgid "Understand that feedback is voluntary and collaborative"
+msgstr "Supraskite, kad grįžtamasis ryšys yra savanoriškas ir bendradarbiavimo pagrindu"
+
+#: .\templates\users\terms.html:21
+msgid "Be open to suggestions and improvements"
+msgstr "Būkite atviri pasiūlymams ir patobulinimams"
+
+#: .\templates\users\terms.html:24
+msgid "For specialists"
+msgstr "Specialistams"
+
+#: .\templates\users\terms.html:26
+msgid "Respect intellectual property — do not reuse ideas without permission"
+msgstr "Gerbkite intelektinę nuosavybę – nenaudokite idėjų be leidimo"
+
+#: .\templates\users\terms.html:27
+msgid "Provide thoughtful and honest input where possible"
+msgstr "Teikite apgalvotus ir sąžiningus atsiliepimus, kai tai įmanoma"
+
+#: .\templates\users\terms.html:28
+msgid ""
+"Only accept work or collaboration if you're confident in your ability to "
+"contribute"
+msgstr "Sutikite dirbti ar bendradarbiauti tik tada, jei esate tikri dėl savo gebėjimų prisidėti"
+
+#: .\templates\users\terms.html:32
+msgid "By creating an account and using the platform, you agree to all of the above."
+msgstr "Sukūrę paskyrą ir naudodamiesi platforma, sutinkate su visomis aukščiau pateiktomis taisyklėmis"
+
+#: .\templates\users\view_idea.html:11
+msgid "unsave"
+msgstr "pašalinti iš išsaugotų"
+
+#: .\templates\users\view_idea.html:15
+msgid "save"
+msgstr "išsaugoti"
+
+#: .\templates\users\view_idea.html:25
+msgid "no category"
+msgstr "nėra kategorijos"
+
+#: .\templates\users\view_idea.html:28
+msgid "posted by"
+msgstr "paskelbė"
+
+#: .\templates\users\view_idea.html:37
+msgid "attached files"
+msgstr "pridėti failai"
+
+#: .\templates\users\view_idea.html:48
+msgid "no files attached."
+msgstr "failų nepridėta."
+
+#: .\templates\users\view_idea.html:51
+#: .\templates\users\view_user_profile.html:164
+msgid "back to search"
+msgstr "atgal į paiešką"
+
+#: .\templates\users\view_user_profile.html:33
+msgid "category of expertise"
+msgstr "specializacijos sritis"
+
+#: .\templates\users\view_user_profile.html:35
+msgid "idea category"
+msgstr "idėjos kategorija"
+
+#: .\templates\users\view_user_profile.html:41
+msgid "not specified"
+msgstr "nenurodyta"
+
+#: .\templates\users\view_user_profile.html:66
+msgid "average rating"
+msgstr "vidutinis įvertinimas"
+
+#: .\templates\users\view_user_profile.html:82
+msgid "posted ideas"
+msgstr "paskelbtos idėjos"
+
+#: .\templates\users\view_user_profile.html:95
+msgid "no ideas posted yet."
+msgstr "dar neįkelta jokių idėjų."
+
+#: .\templates\users\view_user_profile.html:102
+msgid "portfolio gallery"
+msgstr "portfolio galerija"
+
+#: .\templates\users\view_user_profile.html:106
+msgid "portfolio image"
+msgstr "portfolio vaizdas"
+
+#: .\templates\users\view_user_profile.html:111
+msgid "no portfolio uploaded."
+msgstr "portfolio nėra."
+
+#: .\templates\users\view_user_profile.html:117
+msgid "leave a review"
+msgstr "palikite atsiliepimą"
+
+#: .\templates\users\view_user_profile.html:121
+msgid "rating"
+msgstr "įvertinimas"
+
+#: .\templates\users\view_user_profile.html:131
+msgid "comment (optional)"
+msgstr "komentaras (nebūtina)"
+
+#: .\templates\users\view_user_profile.html:132
+msgid "share your thoughts..."
+msgstr "pasidalinkite mintimis..."
+
+#: .\templates\users\view_user_profile.html:135
+msgid "submit review"
+msgstr "pateikti atsiliepimą"
+
+#: .\templates\users\view_user_profile.html:161
+msgid "no reviews yet."
+msgstr "atsiliepimų kol kas nėra."
+
+#: .\templatetags\user_extras.py:8
+msgid "1–3 years"
+msgstr "1–3 metai"
+
+#: .\templatetags\user_extras.py:9
+msgid "3–5 years"
+msgstr "3–5 metai"
+
+#: .\templatetags\user_extras.py:15
+msgid "N/A"
+msgstr "Nenurodyta"
+
+#: .\views.py:88
+msgid "Password updated successfully!"
+msgstr "Slaptažodis sėkmingai atnaujintas!"
+
+#: .\views.py:91
+msgid "Please correct the error above."
+msgstr "Prašome ištaisyti klaidą aukščiau."
+
+#: .\views.py:99
+msgid "Image uploaded!"
+msgstr "Nuotrauka įkelta!"
+
+#: .\views.py:147
+#, python-format
+msgid "New category '%(name)s' created and marked as PENDING."
+msgstr "Sukurta nauja kategorija '%(name)s' ir pažymėta kaip LAUKIAMA."
+
+#: .\views.py:150
+msgid "Your idea has been saved, but the category is pending approval."
+msgstr "Jūsų idėja išsaugota, tačiau kategorija laukia patvirtinimo."
+
+#: .\views.py:163 .\views.py:224
+#, python-format
+msgid "File type %(ext)s is not allowed."
+msgstr "Failo tipas %(ext)s neleidžiamas."
+
+#: .\views.py:167 .\views.py:228
+#, python-format
+msgid "%(file)s exceeds the 5MB limit."
+msgstr "Failas %(file)s viršija 5MB ribą."
+
+#: .\views.py:186 .\views.py:247
+#, python-format
+msgid "❌ %(file)s has unsupported MIME type (%(mime)s) for extension %(ext)s."
+msgstr "❌ Failo %(file)s MIME tipas (%(mime)s) neatitinka plėtinio %(ext)s."
+
+#: .\views.py:254
+msgid "Idea updated successfully!"
+msgstr "Idėja sėkmingai atnaujinta!"
+
+#: .\views.py:269
+msgid "Idea deleted successfully!"
+msgstr "Idėja sėkmingai ištrinta!"
+
+#: .\views.py:381
+msgid "your review has been submitted!"
+msgstr "atsiliepimas pateiktas!"

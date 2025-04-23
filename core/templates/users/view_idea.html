@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+    <div class="card p-4 shadow-sm mt-4 position-relative" style="max-width: 800px; margin: auto; background-color: #f8f8f8;">
+
+        <form method="POST" action="{% url 'toggle_saved_idea' idea.id %}" style="position: absolute; top: 1rem; right: 1.5rem;">
+            {% csrf_token %}
+            {% if is_saved %}
+                <button class="btn btn-danger" type="submit">
+                    <i class="bi bi-bookmark-plus"></i> {% trans "unsave" %}
+                </button>
+            {% else %}
+                <button class="btn btn-success" type="submit">
+                    <i class="bi bi-bookmark-plus"></i> {% trans "save" %}
+                </button>
+            {% endif %}
+        </form>
+
+        <h2 class="mb-3">{{ idea.title }}</h2>
+        <p><strong>{% trans "category" %}:</strong>
+            {% if idea.category %}
+                {{ idea.category.name }}
+            {% else %}
+                <span class="text-muted">{% trans "no category" %}</span>
+            {% endif %}
+        </p>
+        <p><strong>{% trans "posted by" %}:</strong> {{ idea.user.username }}</p>
+
+        <hr>
+
+        <h5 class="mt-3">{% trans "description" %}:</h5>
+        <p style="white-space: pre-wrap;">{{ idea.description }}</p>
+
+        {% if idea.files.exists %}
+            <hr>
+            <h5 class="mt-3">{% trans "attached files" %}:</h5>
+            <ul class="list-unstyled">
+                {% for file in idea.files.all %}
+                    <li>
+                        <a href="{{ file.file.url }}" class="text-primary" download>
+                            <i class="bi bi-paperclip"></i> {{ file.file.name|slice:"10:" }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">{% trans "no files attached." %}</p>
+        {% endif %}
+
+        <a href="{% url 'search' %}" class="btn btn-success mt-4">← {% trans "back to search" %}</a>
+    </div>
+</div>
+{% endblock %}

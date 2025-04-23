@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 80vh; overflow-y: auto;">
+    <div class="p-4 shadow w-100" style="max-width: 800px;">
+        <h3 class="text-center">
+            {% if editing %}
+                {% trans "edit your idea" %}
+            {% else %}
+                {% trans "post a new idea" %}
+            {% endif %}
+        </h3>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "title" %}</label>
+                <input type="text" class="form-control" name="title" value="{{ form.title.value|default:'' }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "category" %}</label>
+                <select class="form-control" name="category" id="category-select">
+                    <option value="">----------</option>
+                    {% for choice in form.category.field.queryset %}
+                        <option value="{{ choice.id }}" {% if form.category.value == choice.id %}selected{% endif %}>
+                            {{ choice.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "can't find a suitable category?" %}</label>
+                <input type="text" class="form-control" name="new_category" id="new-category-input" placeholder="{% trans 'suggest a new category' %}">
+            </div>
+
+            {% if editing and idea.files.all %}
+                <div class="mb-3">
+                    <label class="form-label">{% trans "existing files" %}</label>
+                    <ul class="list-unstyled">
+                        {% for file in idea.files.all %}
+                            <li>
+                                <a href="{{ file.file.url }}" download><i class="bi bi-paperclip"></i>{{ file.file.name }}</a>
+                                <input type="checkbox" name="remove_files" value="{{ file.id }}"> {% trans "remove" %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "description" %}</label>
+                <textarea class="form-control" name="description" rows="5" required>{{ form.description.value|default:'' }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{% trans "upload files" %}</label>
+                <input type="file" class="form-control" name="files" multiple>
+                <div class="form-text">
+                    {% trans "allowed file types: .pdf, .docx, .txt, .png, .jpg, .jpeg | max size: 5MB" %}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                {% if editing %}
+                    {% trans "update" %}
+                {% else %}
+                    {% trans "submit" %}
+                {% endif %}
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- script to show/hide new category input -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const categorySelect = document.getElementById("category-select");
+        const newCategoryInput = document.getElementById("new-category-input");
+
+        function toggleNewCategoryInput() {
+            if (categorySelect.value) {
+                newCategoryInput.disabled = true;
+                newCategoryInput.value = "";
+            } else {
+                newCategoryInput.disabled = false;
+            }
+        }
+
+        categorySelect.addEventListener("change", toggleNewCategoryInput);
+        toggleNewCategoryInput();
+    });
+</script>
+
+<style>
+    html, body {
+        height: 100%;
+        overflow: auto;
+    }
+</style>
+{% endblock %}

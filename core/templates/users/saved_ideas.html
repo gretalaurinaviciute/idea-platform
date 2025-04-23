@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container mt-4">
+
+    <h4 class="mb-4">{% trans "saved ideas" %}</h4>
+
+    {% if saved_ideas %}
+        <ul class="list-group mb-4">
+            {% for saved in saved_ideas %}
+                <li class="list-group-item">
+                    <strong>{{ saved.idea.title }}</strong> ({{ saved.idea.category.name }})<br>
+                    {{ saved.idea.description|truncatewords:20 }}
+                    <a href="{% url 'view_idea' saved.idea.id %}" class="btn btn-primary btn-sm float-end">{% trans "view" %}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">{% trans "you haven't saved any ideas yet." %}</p>
+    {% endif %}
+
+</div>
+{% endblock %}
